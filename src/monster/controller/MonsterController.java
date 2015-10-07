@@ -8,7 +8,7 @@ public class MonsterController
 		
 		private boolean continueOn;
 		private MonsterDisplay popUp;
-		private MarshmallowMonster defaultMonster;
+		private MarshmallowMonster displayMonster;
 		
 		private int userConfirm;
 		
@@ -17,14 +17,14 @@ public class MonsterController
 			continueOn = false;
 			popUp = new MonsterDisplay();
 			
-			defaultMonster = new MarshmallowMonster();
+			String defaultName = "Brettly";
+			String defaultEyes = "3";
+			String defaultNose = "1";
+			String defaultLegs = "2";
+			String defaultHair = "100";
+			String defaultBellyButton = "true";
 			
-			String monsterName;
-			String monsterEyes;
-			String monsterNose;
-			String monsterLegs;
-			String monsterHair;
-			String bellyButton;
+			displayMonster = new MarshmallowMonster(defaultName, defaultEyes, defaultNose, defaultLegs, defaultHair, defaultBellyButton);
 		}
 		
 		public void start()
@@ -34,8 +34,9 @@ public class MonsterController
 			
 			if(userConfirm == popUp.yesOption())
 				{
-					popUp.showSomething("Here is the default monster. " + defaultMonster.toString());
+					popUp.displayDefault(displayMonster.toString());
 					askQuestions();
+					popUp.showSomething(displayMonster.toString());
 				}
 			else
 				{
@@ -46,6 +47,21 @@ public class MonsterController
 		
 		private void askQuestions()
 		{
-			String newMonsterName = popUp.getUserInput("Enter your Monster's new name.");
+			String newMonsterName = popUp.getUserInput("Enter your Monster's new name."); displayMonster.setMonsterName(newMonsterName);
+			String newMonsterEyes = popUp.getUserInput("Enter " + newMonsterName + "'s amount of eyes."); displayMonster.setMonsterEyes(newMonsterEyes);
+			String newMonsterNose = popUp.getUserInput("Enter " + newMonsterName + "'s amount of noses."); displayMonster.setMonsterEyes(newMonsterNose);
+			String newMonsterLegs= popUp.getUserInput("Enter " + newMonsterName + "'s amount of legs."); displayMonster.setMonsterEyes(newMonsterLegs);
+			String newMonsterHair = popUp.getUserInput("Enter " + newMonsterName + "'s amount of hairs."); displayMonster.setMonsterEyes(newMonsterHair);
+			int newMonsterBellyButton = popUp.getUserConfirm("Does " + newMonsterName + " have a belly button?"); displayMonster.setBellyButton(newMonsterBellyButton);
+			
+			if(newMonsterBellyButton == popUp.yesOption())
+			{
+				String bellyButtonString = " and has a belly button.";
+			}
+			else
+			{
+				
+			}
 		}
+		
 	}

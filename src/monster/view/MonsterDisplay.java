@@ -44,4 +44,9 @@ public class MonsterDisplay
 					
 				return userAnswer;
 			}
+		
+		public void displayDefault(String info)
+		{
+			showSomething("Default monster info: " + info);
+		}
 	}
